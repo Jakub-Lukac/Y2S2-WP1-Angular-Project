@@ -3,6 +3,7 @@ export interface AlbumResponse{
 }
 
 interface Album {
+    id:number,
     total_tracks: number,
     name: string,
     release_date: string,
