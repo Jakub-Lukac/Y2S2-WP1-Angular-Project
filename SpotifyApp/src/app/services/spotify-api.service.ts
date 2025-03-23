@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, catchError, tap } from 'rxjs';
+import { Observable, throwError, catchError, tap, switchMap, map } from 'rxjs';
 
 // models
 import { TokenResponse } from '../models/token-response';
+import { ArtistResponse, Artist } from '../models/artist-response';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class SpotifyApiService {
 
   // private - because we will call this method inside invoked methods
   // not directly from UI
-  getToken(): Observable<TokenResponse> {
+  private getToken(): Observable<TokenResponse> {
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
     };
@@ -43,4 +44,21 @@ export class SpotifyApiService {
         catchError(this.handleError)
       );
   }
+
+  getArtist(artistName: string): Observable<Artist | null> {
+    return this.getToken().pipe(
+      switchMap(tokenResponse => {
+        const headers = {
+          'Authorization': `Bearer ${tokenResponse.access_token}`
+        };
+  
+        return this._http.get<ArtistResponse>(
+          `${this._baseURL}search?q=${encodeURIComponent(artistName)}&type=artist`,
+          { headers }
+        );
+      }),
+      map(response => response.artists.items.length > 0 ? response.artists.items[0] : null),
+      catchError(this.handleError)
+    );
+  }  
 }

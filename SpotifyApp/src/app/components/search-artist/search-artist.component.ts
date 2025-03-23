@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { SpotifyApiService } from '../../services/spotify-api.service';
-import { TokenResponse } from '../../models/token-response';
+import { Artist } from '../../models/artist-response';
 
 @Component({
   selector: 'app-search-artist',
@@ -10,22 +10,26 @@ import { TokenResponse } from '../../models/token-response';
   styleUrl: './search-artist.component.scss'
 })
 export class SearchArtistComponent {
-  token?:TokenResponse | undefined
+  artist?:Artist | undefined
   errorMessage:any
 
   constructor (private _spotifyService:SpotifyApiService) {}
 
-  getArtistDetails(movieName:String):boolean{
-    
-    this._spotifyService.getToken().subscribe(
-
-      tokenResponse => {
-        // movieData is object we get from HTTP GET
-        this.token = tokenResponse;
-
-        console.log("Token : " + this.token.access_token);
+  getArtistDetails(artistName: string):boolean{
+    this._spotifyService.getArtist(artistName).subscribe(
+      artistResponse => {
+        if (artistResponse) {
+          this.artist = artistResponse;
+          console.log("Artist Details:", this.artist);
+        } else {
+          console.log("No artist found.");
+        }
+      },
+      error => {
+        this.errorMessage = error;
+        console.error("Error fetching artist:", error);
       }
-    )
+    );
     return false;
   }
 }
