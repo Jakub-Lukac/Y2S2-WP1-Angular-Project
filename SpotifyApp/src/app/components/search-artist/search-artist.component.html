@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container-fluid">
+    <!-- Artist name input -->
     <form>
         <div class="form-group">
             <input type="text" name="artist-name" class="form-control" #artistName placeholder="Enter artist name">
@@ -8,4 +9,18 @@
                 Details</button>
         </div>
     </form>
+
+    <!-- Display artist details and albums -->
+    <div *ngIf="artist" class="row">
+        <div class="col-md-3 mt-4">
+            <!-- artist details-->
+            <img src="{{artist.images[0].url}}" alt="{{artist.name}}" class="img-fluid rounded">
+            <p>Name: {{artist.name}}</p>
+            <p>Followers: {{artist.followers.total}}</p>
+            <p>Popularity: {{artist.popularity}}</p>
+        </div>
+        <div class="col-md-9">
+            <!-- artist's albums -->
+        </div>
+    </div>
 </div>

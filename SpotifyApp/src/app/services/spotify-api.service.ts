@@ -45,7 +45,7 @@ export class SpotifyApiService {
       );
   }
 
-  getArtist(artistName: string): Observable<Artist | null> {
+  getArtist(artistName: string): Observable<Artist | undefined> {
     return this.getToken().pipe(
       switchMap(tokenResponse => {
         const headers = {
@@ -57,7 +57,7 @@ export class SpotifyApiService {
           { headers }
         );
       }),
-      map(response => response.artists.items.length > 0 ? response.artists.items[0] : null),
+      map(response => response.artists.items.length > 0 ? response.artists.items[0] : undefined),
       catchError(this.handleError)
     );
   }  

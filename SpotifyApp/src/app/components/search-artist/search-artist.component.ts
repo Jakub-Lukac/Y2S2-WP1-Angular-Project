@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { SpotifyApiService } from '../../services/spotify-api.service';
 import { Artist } from '../../models/artist-response';
 
 @Component({
   selector: 'app-search-artist',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './search-artist.component.html',
   styleUrl: './search-artist.component.scss'
 })
@@ -18,16 +19,7 @@ export class SearchArtistComponent {
   getArtistDetails(artistName: string):boolean{
     this._spotifyService.getArtist(artistName).subscribe(
       artistResponse => {
-        if (artistResponse) {
-          this.artist = artistResponse;
-          console.log("Artist Details:", this.artist);
-        } else {
-          console.log("No artist found.");
-        }
-      },
-      error => {
-        this.errorMessage = error;
-        console.error("Error fetching artist:", error);
+        this.artist = artistResponse;
       }
     );
     return false;
