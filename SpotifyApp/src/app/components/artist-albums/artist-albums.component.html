@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 mb-3" *ngFor="let album of albums?.items">
-        <div class="card h-100 d-flex flex-row album-card" [routerLink]="['/album', album.id]" style="cursor: pointer;">
+        <div class="card h-100 d-flex flex-row album-card" [routerLink]="['/album', album.name | lowercase | replaceSpaces]" style="cursor: pointer;">
 
             <!-- Left side: Album Cover -->
             <div class="col-6 p-0">

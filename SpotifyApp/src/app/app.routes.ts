@@ -8,5 +8,5 @@ export const routes: Routes = [
     {path: '', component: SearchArtistComponent},
     {path: 'favorite-movies', component: FavoriteMoviesComponent},
     {path: 'about', component: AboutComponent},
-    {path: 'album/:id', component: AlbumDetailComponent },
+    {path: 'album/:name', component: AlbumDetailComponent },
 ];

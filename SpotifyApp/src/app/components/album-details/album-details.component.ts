@@ -7,13 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./album-details.component.scss']
 })
 export class AlbumDetailComponent implements OnInit {
-  albumId?: string;
+  albumName?: string;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.albumId = this.route.snapshot.paramMap.get('id')!;
-    console.log('Album ID:', this.albumId);
-    // Fetch album details using this.albumId
+    this.albumName = this.route.snapshot.paramMap.get('name')!;
+    console.log('Album Name:', this.albumName);
+    // Fetch album details using this.albumName
   }
 }
