@@ -4,9 +4,11 @@ import { CommonModule } from '@angular/common';
 import { SpotifyApiService } from '../../services/spotify-api.service';
 import { Artist } from '../../models/artist-response';
 
+import { ArtistDetailsComponent } from '../artist-details/artist-details.component';
+
 @Component({
   selector: 'app-search-artist',
-  imports: [CommonModule],
+  imports: [CommonModule, ArtistDetailsComponent],
   templateUrl: './search-artist.component.html',
   styleUrl: './search-artist.component.scss'
 })

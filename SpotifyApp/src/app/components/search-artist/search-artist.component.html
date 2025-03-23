@@ -14,10 +14,7 @@
     <div *ngIf="artist" class="row">
         <div class="col-md-3 mt-4">
             <!-- artist details-->
-            <img src="{{artist.images[0].url}}" alt="{{artist.name}}" class="img-fluid rounded">
-            <p>Name: {{artist.name}}</p>
-            <p>Followers: {{artist.followers.total}}</p>
-            <p>Popularity: {{artist.popularity}}</p>
+            <app-artist-details [artist]="artist"></app-artist-details>
         </div>
         <div class="col-md-9">
             <!-- artist's albums -->
