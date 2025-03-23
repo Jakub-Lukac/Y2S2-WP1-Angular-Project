@@ -7,5 +7,19 @@ import { Component } from '@angular/core';
   styleUrl: './search-artist.component.scss'
 })
 export class SearchArtistComponent {
+  getArtistDetails(movieName:String):boolean{
+    /*
+    this._omdbService.getMovieData(movieName).subscribe(
 
+      movieData => {
+        // movieData is object we get from HTTP GET
+        this.movieData = movieData;
+
+        console.log("Director name : " + this.movieData.Director);
+      }
+    )
+    return false;
+    */
+   return false;
+  }
 }
