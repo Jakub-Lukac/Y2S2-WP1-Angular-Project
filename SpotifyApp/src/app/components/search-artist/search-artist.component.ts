@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+import { SpotifyApiService } from '../../services/spotify-api.service';
+import { TokenResponse } from '../../models/token-response';
+
 @Component({
   selector: 'app-search-artist',
   imports: [],
@@ -7,19 +10,22 @@ import { Component } from '@angular/core';
   styleUrl: './search-artist.component.scss'
 })
 export class SearchArtistComponent {
+  token?:TokenResponse | undefined
+  errorMessage:any
+
+  constructor (private _spotifyService:SpotifyApiService) {}
+
   getArtistDetails(movieName:String):boolean{
-    /*
-    this._omdbService.getMovieData(movieName).subscribe(
+    
+    this._spotifyService.getToken().subscribe(
 
-      movieData => {
+      tokenResponse => {
         // movieData is object we get from HTTP GET
-        this.movieData = movieData;
+        this.token = tokenResponse;
 
-        console.log("Director name : " + this.movieData.Director);
+        console.log("Token : " + this.token.access_token);
       }
     )
     return false;
-    */
-   return false;
   }
 }
