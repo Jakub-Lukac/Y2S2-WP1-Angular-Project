@@ -32,9 +32,12 @@
               }
             ],
             "styles": [
+              "bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
