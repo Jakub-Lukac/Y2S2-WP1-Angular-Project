@@ -8,10 +8,11 @@ import { Artist } from '../../models/artist-response';
 
 import { ArtistDetailsComponent } from '../artist-details/artist-details.component';
 import { AlbumResponse } from '../../models/album-response';
+import { ArtistAlbumsComponent } from '../artist-albums/artist-albums.component';
 
 @Component({
   selector: 'app-search-artist',
-  imports: [CommonModule, ArtistDetailsComponent],
+  imports: [CommonModule, ArtistDetailsComponent, ArtistAlbumsComponent],
   templateUrl: './search-artist.component.html',
   styleUrl: './search-artist.component.scss'
 })
@@ -42,9 +43,9 @@ export class SearchArtistComponent {
       albumsResponse => {
         this.albums = albumsResponse;
         // testing albums response
-        /*for (let index = 0; index < this.albums.items.length; index++) {
-          console.log(`Albums Name: ${this.albums.items[index].name}`)
-        }*/
+        for (let index = 0; index < this.albums.items.length; index++) {
+          console.log(`Albums cover url: ${this.albums.items[index].images[0].url}`)
+        }
       }
     );
 

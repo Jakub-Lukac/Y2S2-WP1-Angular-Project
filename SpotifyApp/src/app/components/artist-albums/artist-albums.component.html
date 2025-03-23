@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-6 mb-3" *ngFor="let album of albums?.items">
+        <div class="card h-100 d-flex flex-row">
+            <!-- Left side: Album Cover -->
+            <div class="col-6 p-0">
+                <img src="{{album.images[0].url}}" class="img-fluid rounded-start"
+                    alt="{{ album.name }}" />
+            </div>
+
+            <!-- Right side: Album Details -->
+            <div class="col-6 d-flex flex-column justify-content-center p-3">
+                <h5 class="card-title">{{ album.name }}</h5>
+                <p class="card-text">
+                    <strong>Tracks:</strong> {{ album.total_tracks }}
+                </p>
+                <p class="card-text">
+                    <strong>Released:</strong> {{ album.release_date }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
