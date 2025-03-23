@@ -1,4 +1,7 @@
-<img src="{{artist.images[0].url}}" alt="{{artist.name}}" class="img-fluid rounded">
-<h3>Name: {{artist.name}}</h3>
+<!-- Display image for medium and larger screens -->
+<img src="{{artist.images[0].url}}" alt="{{artist.name}}" class="img-fluid rounded d-none d-md-block">
+<!-- Display image for smaller screens -->
+<img src="{{artist.images[1].url}}" alt="{{artist.name}}" class="img-fluid rounded d-md-none">
+<h3>{{artist.name}}</h3>
 <p>Followers: {{artist.followers.total}}</p>
 <p>Popularity: {{artist.popularity}}</p>

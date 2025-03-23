@@ -3,19 +3,22 @@
         <div class="card h-100 d-flex flex-row">
             <!-- Left side: Album Cover -->
             <div class="col-6 p-0">
-                <img src="{{album.images[0].url}}" class="img-fluid rounded-start"
-                    alt="{{ album.name }}" />
+                <img src="{{album.images[0].url}}" class="img-fluid rounded-start" alt="{{ album.name }}" />
             </div>
 
             <!-- Right side: Album Details -->
-            <div class="col-6 p-3">
-                <h5 class="card-title">{{ album.name }}</h5>
-                <p class="card-text">
-                    <strong>Tracks:</strong> {{ album.total_tracks }}
-                </p>
-                <p class="card-text">
-                    <strong>Released:</strong> {{ album.release_date }}
-                </p>
+            <div class="col-6 p-3 d-flex flex-column justify-content-between">
+                <h5 class="card-title fw-bold text-truncate fs-5 fs-md-4 fs-lg-3">
+                    {{ album.name }}
+                </h5>
+                <div>
+                    <p class="card-text fs-6 fs-md-5">
+                        <strong>Tracks:</strong> {{ album.total_tracks }}
+                    </p>
+                    <p class="card-text fs-6 fs-md-5">
+                        <strong>Released:</strong> {{ album.release_date }}
+                    </p>
+                </div>
             </div>
         </div>
     </div>
