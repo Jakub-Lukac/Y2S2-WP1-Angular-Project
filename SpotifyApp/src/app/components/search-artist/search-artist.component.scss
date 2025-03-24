@@ -1,0 +1,38 @@
+.search-container {
+    background-color: #121212; 
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+// Input field styling
+.search-input {
+    background-color: #282828; 
+    color: #ffffff;
+    border: 1px solid #1DB954; 
+    padding: 12px;
+    font-size: 16px;
+
+    &::placeholder {
+        color: #b3b3b3;
+    }
+
+    &:focus {
+        border-color: #1DB954;
+        outline: none;
+        box-shadow: 0 0 8px rgba(29, 185, 84, 0.7);
+    }
+}
+
+.search-btn {
+    background-color: #1DB954;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #1a9046;
+    }
+}
