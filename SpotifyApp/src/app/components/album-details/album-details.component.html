@@ -1,1 +1,19 @@
-<p>{{album}}</p>
+<div class="container-fluid">
+    <!-- Display album details and tracks on album -->
+    <div *ngIf="album" class="row">
+        <div class="col-md-3 mt-4">
+            <!-- album details-->
+            <!-- Display image for medium and larger screens -->
+            <img src="{{album.images[0].url}}" alt="{{album.name}}" class="img-fluid rounded d-none d-md-block">
+            <!-- Display image for smaller screens -->
+            <img src="{{album.images[1].url}}" alt="{{album.name}}" class="img-fluid rounded d-md-none">
+            <h3>{{album.name}}</h3>
+            <p>Total trakcs: {{album.total_tracks}}</p>
+            <p>Release Date: {{album.release_date}}</p>
+        </div>
+        <div class="col-md-9 mt-4">
+            <!-- albums's tracks -->
+            <app-album-tracks [tracks]="tracks"></app-album-tracks>
+        </div>
+    </div>
+</div>

@@ -1,16 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlbumResponse } from '../../models/album-response';
+import { CommonModule } from '@angular/common';
+
+import { Album } from '../../models/album-response';
+import { SpotifyApiService } from '../../services/spotify-api.service';
+import { TrackResponse } from '../../models/track-response';
+
+import { AlbumTracksComponent } from '../album-tracks/album-tracks.component';
 
 @Component({
   selector: 'app-album-detail',
+  imports: [CommonModule, AlbumTracksComponent],
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.scss']
 })
 export class AlbumDetailComponent implements OnInit {
-  album?: AlbumResponse;
+  album?: Album;
+  tracks?: TrackResponse;
 
-  constructor(private _route: ActivatedRoute, private _router:Router) {}
+  constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
 
   ngOnInit() {
     this.album = history.state.album;
@@ -22,7 +30,15 @@ export class AlbumDetailComponent implements OnInit {
       // TODO: Call API to fetch album details if needed
     } else {
       console.log('Album details:', this.album);
-      // TODO: Fetch tracks using this.album.id
+      
+      // fetch tracks based on album id
+      this._spotifyService.getAlbumTracks(this.album.id).subscribe(
+        tracksData => {
+          this.tracks = tracksData;
+
+          console.log(`${JSON.stringify(tracksData)}`);
+        }
+      )
     }
   }
 }

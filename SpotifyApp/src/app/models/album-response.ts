@@ -2,8 +2,8 @@ export interface AlbumResponse{
     items: Album[]
 }
 
-interface Album {
-    id:number,
+export interface Album {
+    id:string,
     total_tracks: number,
     name: string,
     release_date: string,

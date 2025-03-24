@@ -7,6 +7,7 @@ import { Observable, throwError, catchError, tap, switchMap, map } from 'rxjs';
 import { TokenResponse } from '../models/token-response';
 import { ArtistResponse, Artist } from '../models/artist-response';
 import { AlbumResponse } from '../models/album-response';
+import { TrackResponse } from '../models/track-response';
 
 @Injectable({
   providedIn: 'root'
@@ -80,6 +81,18 @@ export class SpotifyApiService {
   }
 
   getAlbumTracks(albumId:string){
-    
+    return this.getToken().pipe(
+      switchMap(tokenResponse => {
+        const headers = {
+          'Authorization': `Bearer ${tokenResponse.access_token}`
+        };
+  
+        return this._http.get<TrackResponse>(
+          `${this._baseURL}albums/${albumId}/tracks`,
+          { headers }
+        );
+      }),
+      catchError(this.handleError)
+    );
   }
 }
