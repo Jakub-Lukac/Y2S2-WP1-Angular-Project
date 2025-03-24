@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlbumResponse } from '../../models/album-response';
 
 @Component({
   selector: 'app-album-detail',
@@ -7,13 +8,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./album-details.component.scss']
 })
 export class AlbumDetailComponent implements OnInit {
-  albumName?: string;
+  album?: AlbumResponse;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private _route: ActivatedRoute, private _router:Router) {}
 
   ngOnInit() {
-    this.albumName = this.route.snapshot.paramMap.get('name')!;
-    console.log('Album Name:', this.albumName);
-    // Fetch album details using this.albumName
+    this.album = history.state.album;
+
+    if (!this.album) {
+      // Handle case where album data is lost (e.g., direct page refresh)
+      const albumName = this._route.snapshot.paramMap.get('name');
+      console.log('Fetch album details by name:', albumName);
+      // TODO: Call API to fetch album details if needed
+    } else {
+      console.log('Album details:', this.album);
+      // TODO: Fetch tracks using this.album.id
+    }
   }
 }
