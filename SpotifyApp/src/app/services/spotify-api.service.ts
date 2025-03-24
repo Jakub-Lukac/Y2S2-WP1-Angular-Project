@@ -9,6 +9,9 @@ import { ArtistResponse, Artist } from '../models/artist-response';
 import { AlbumResponse } from '../models/album-response';
 import { TrackResponse } from '../models/track-response';
 
+// secrets
+import { environment } from '../../environments/environment.development';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +21,8 @@ export class SpotifyApiService {
   private _baseURL = "https://api.spotify.com/v1/"
 
     // Replace these with your actual client ID and secret
-    private _clientId = "03619e7aa0344a45a9fe014a969a62ea";
-    private _clientSecret = "6c994bd714a94ee79d8f6c985716c3a9";
+    private _clientId = environment.CLIENT_ID;
+    private _clientSecret = environment.CLIENT_SECRET;
 
   constructor(private _http:HttpClient) { }
 
