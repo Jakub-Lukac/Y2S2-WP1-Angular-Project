@@ -1,7 +1,13 @@
-<!-- Display image for medium and larger screens -->
-<img src="{{artist.images[0].url}}" alt="{{artist.name}}" class="img-fluid rounded d-none d-md-block">
-<!-- Display image for smaller screens -->
-<img src="{{artist.images[1].url}}" alt="{{artist.name}}" class="img-fluid rounded d-md-none">
-<h3>{{artist.name}}</h3>
-<p>Followers: {{artist.followers.total}}</p>
-<p>Popularity: {{artist.popularity}}</p>
+<div class="artist-details">
+    <!-- Display image for medium and larger screens -->
+    <img *ngIf="artist.images.length" src="{{artist.images[0].url}}" alt="{{artist.name}}"
+        class="img-fluid artist-image d-none d-md-block">
+
+    <!-- Display image for smaller screens -->
+    <img *ngIf="artist.images.length > 1" src="{{artist.images[1].url}}" alt="{{artist.name}}"
+        class="img-fluid artist-image d-md-none">
+
+    <div class="fs-3 fw-bold mb-3">{{artist.name}}</div>
+    <p class="artist-followers fs-6 mb-2"><strong>Followers:</strong> {{artist.followers.total | number}}</p>
+    <p class="artist-popularity fs-6 mb-2"><strong>Popularity:</strong> {{artist.popularity}} / 100</p>
+</div>
