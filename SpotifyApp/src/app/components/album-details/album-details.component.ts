@@ -17,6 +17,7 @@ import { AlbumTracksComponent } from '../album-tracks/album-tracks.component';
 export class AlbumDetailComponent implements OnInit {
   album?: Album;
   tracks?: TrackResponse;
+  albumImageUrl ?: string;
 
   constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
 
@@ -30,7 +31,8 @@ export class AlbumDetailComponent implements OnInit {
       // TODO: Call API to fetch album details if needed
     } else {
       console.log('Album details:', this.album);
-      
+      this.albumImageUrl = this.album.images[1].url;
+
       // fetch tracks based on album id
       this._spotifyService.getAlbumTracks(this.album.id).subscribe(
         tracksData => {
