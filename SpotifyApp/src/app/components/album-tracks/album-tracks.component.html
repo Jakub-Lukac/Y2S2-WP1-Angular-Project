@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let track of tracks?.items">
+            <div class="card h-100 shadow-sm">
+                <!-- Album Cover -->
+                <img src="{{ albumImageUrl }}" class="card-img-top" alt="Album Cover">
+
+                <div class="card-body text-center">
+                    <!-- Track Name -->
+                    <h5 class="card-title text-truncate" title="{{ track.name }}">{{ track.name }}</h5>
+
+                    <!-- Track Number -->
+                    <p class="card-text"><strong>Track: #</strong>{{ track.track_number }}</p>
+
+                    <!-- Track Duration (Convert from ms to minutes:seconds) -->
+                    <p class="card-text">
+                        <strong>Duration:</strong> {{ formatDuration(track.duration_ms) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

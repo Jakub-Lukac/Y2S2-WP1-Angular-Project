@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AlbumResponse } from '../../models/album-response';
+import { Album, AlbumResponse } from '../../models/album-response';
 
 import { CommonModule } from '@angular/common';
 import { Router,RouterLink } from '@angular/router';
@@ -17,7 +17,7 @@ export class ArtistAlbumsComponent {
 
   constructor(private _router:Router) {}
 
-  goToAlbumDetail(album: any) {
+  goToAlbumDetail(album: Album) {
     this._router.navigate(['/album', album.name.toLowerCase().replace(/\s+/g, '-')], { state: { album } });
   }
 }
