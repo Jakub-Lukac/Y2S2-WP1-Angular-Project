@@ -1,0 +1,42 @@
+.track-list-container {
+    background-color: #121212; // Dark Spotify background
+    color: #ffffff;
+}
+
+// Track Card Styling
+.track-card {
+    background-color: #181818; // Darker than the container for contrast
+    color: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.track-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.track-card-body {
+    text-align: center;
+}
+
+.track-title {
+    color: #1DB954;
+}
+
+// Track Metadata
+.track-meta {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+strong {
+    color: #1DB954;
+}

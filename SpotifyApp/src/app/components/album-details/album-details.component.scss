@@ -1,0 +1,37 @@
+.album-container {
+    background-color: #121212;  // Spotify dark background
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 40px 20px;  // More breathing room
+}
+
+// Album Details Card
+.album-details {
+    background-color: #282828;  // Slightly lighter than main background
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+}
+
+.album-image {
+    width: 100%;
+    max-width: 220px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.album-title {
+    text-align: center;
+    color: #1DB954;
+}
+
+.album-meta {
+    text-align: center;
+}
+
+.album-meta strong {
+    color: #1DB954;
+}

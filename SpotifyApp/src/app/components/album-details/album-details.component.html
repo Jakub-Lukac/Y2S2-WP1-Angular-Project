@@ -1,18 +1,24 @@
-<div class="container-fluid">
-    <!-- Display album details and tracks on album -->
+<div class="container-fluid album-container">
+    <!-- Display album details and tracks -->
     <div *ngIf="album" class="row">
         <div class="col-md-3 mt-4">
-            <!-- album details-->
-            <!-- Display image for medium and larger screens -->
-            <img src="{{album.images[0].url}}" alt="{{album.name}}" class="img-fluid rounded d-none d-md-block">
-            <!-- Display image for smaller screens -->
-            <img src="{{album.images[1].url}}" alt="{{album.name}}" class="img-fluid rounded d-md-none">
-            <h3>{{album.name}}</h3>
-            <p>Total trakcs: {{album.total_tracks}}</p>
-            <p>Release Date: {{album.release_date}}</p>
+            <div class="album-details p-4 rounded">
+                <!-- Album cover -->
+                <img *ngIf="album.images.length" [src]="album.images[0].url" alt="{{album.name}}"
+                    class="img-fluid album-image d-none d-md-block mb-2">
+                <img *ngIf="album.images.length > 1" [src]="album.images[1].url" alt="{{album.name}}"
+                    class="img-fluid album-image d-md-none mb-2">
+
+                <!-- Album name -->
+                <div class="album-title fw-bold fs-md-4 fs-3 mb-2">{{ album.name }}</div>
+
+                <!-- Album metadata -->
+                <p class="album-meta mb-1 fs-md-6"><strong>Total Tracks:</strong> {{ album.total_tracks }}</p>
+                <p class="album-meta mb-1 fs-md-6"><strong>Release Date:</strong> {{ album.release_date }}</p>
+            </div>
         </div>
         <div class="col-md-9 mt-4">
-            <!-- albums's tracks -->
+            <!-- Album's tracks component -->
             <app-album-tracks [tracks]="tracks" [albumImageUrl]="albumImageUrl"></app-album-tracks>
         </div>
     </div>
