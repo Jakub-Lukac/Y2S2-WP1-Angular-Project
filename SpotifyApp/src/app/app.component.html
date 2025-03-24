@@ -1,28 +1,27 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg spotify-navbar">
   <div class="container-fluid">
-    <!-- Spotify Logo -->
-    <a class="navbar-brand d-flex align-items-center" href="#">
-      <img src="/spotify-logo.png" alt="Spotify Logo" height="40" class="me-3">
+
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <img src="/spotify-logo.svg" alt="Spotify Logo" height="40" class="me-2">
     </a>
 
-    <!-- Navbar Toggle Button -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+      aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar Links -->
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-3 gap-3"> 
+      <ul class="navbar-nav ms-3 gap-3">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Search Artist</a>
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Search
+            Artist</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/favorite-movies" routerLinkActive="active"
-            ariaCurrentWhenActive="page">Favorite Movies</a>
+          <a class="nav-link" routerLink="/favorite-movies" routerLinkActive="active">Favorite Movies</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/about" routerLinkActive="active" ariaCurrentWhenActive="page">About</a>
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
         </li>
       </ul>
     </div>

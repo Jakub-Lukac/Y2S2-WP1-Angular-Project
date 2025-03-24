@@ -1,0 +1,32 @@
+// Spotify Navbar Styling
+.spotify-navbar {
+    background-color: #1DB954;
+    padding: 0.8rem 1rem;
+  
+    .navbar-brand img {
+      height: 45px; 
+    }
+  
+    .navbar-toggler {
+      border: none;
+  
+      .navbar-toggler-icon {
+        filter: brightness(0) invert(1);
+      }
+    }
+  
+    .navbar-nav {
+      .nav-item {
+        .nav-link {
+          color: #ffffff; 
+          font-weight: 500;
+          transition: color 0.3s ease;
+  
+          &:hover, &.active {
+            color: #0a2815;
+          }
+        }
+      }
+    }
+}
+  
