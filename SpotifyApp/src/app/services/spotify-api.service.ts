@@ -78,4 +78,8 @@ export class SpotifyApiService {
       catchError(this.handleError)
     );
   }
+
+  getAlbumTracks(albumId:string){
+    
+  }
 }
