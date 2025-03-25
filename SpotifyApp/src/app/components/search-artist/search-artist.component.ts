@@ -9,10 +9,11 @@ import { Artist } from '../../models/artist-response';
 import { ArtistDetailsComponent } from '../artist-details/artist-details.component';
 import { AlbumResponse } from '../../models/album-response';
 import { ArtistAlbumsComponent } from '../artist-albums/artist-albums.component';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
   selector: 'app-search-artist',
-  imports: [CommonModule, ArtistDetailsComponent, ArtistAlbumsComponent],
+  imports: [CommonModule, ArtistDetailsComponent, ArtistAlbumsComponent, ErrorMessageComponent],
   templateUrl: './search-artist.component.html',
   styleUrl: './search-artist.component.scss'
 })
@@ -37,6 +38,7 @@ export class SearchArtistComponent {
       }),
       catchError(error => {
         this.errorMessage = `${error}`;
+        console.log(`Fetching error: ${this.errorMessage}`);
         return [];
       })
     ).subscribe(
