@@ -7,10 +7,11 @@ import { SpotifyApiService } from '../../services/spotify-api.service';
 import { TrackResponse } from '../../models/track-response';
 
 import { AlbumTracksComponent } from '../album-tracks/album-tracks.component';
+import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
   selector: 'app-album-detail',
-  imports: [CommonModule, AlbumTracksComponent],
+  imports: [CommonModule, AlbumTracksComponent, ErrorMessageComponent],
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.scss']
 })
@@ -19,6 +20,7 @@ export class AlbumDetailComponent implements OnInit {
   tracks?: TrackResponse;
   albumImageUrl ?: string;
   loading: boolean = false;
+  errorMessage: any;
 
   constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
 
@@ -36,13 +38,18 @@ export class AlbumDetailComponent implements OnInit {
       this.albumImageUrl = this.album.images[1].url;
 
       // fetch tracks based on album id
-      this._spotifyService.getAlbumTracks(this.album.id).subscribe(
-        tracksData => {
-          this.tracks = tracksData;
-          this.loading = false;
-          console.log(`${JSON.stringify(tracksData)}`);
-        }
-      )
+      try {
+        this._spotifyService.getAlbumTracks(this.album.id).subscribe(
+          tracksData => {
+            this.tracks = tracksData;
+            this.loading = false;
+            console.log(`${JSON.stringify(tracksData)}`);
+          }
+        )
+      } catch (error) {
+        this.errorMessage = "An error occured while fetching album tracks! Please try again later."
+      }
+      
     }
   }
 }

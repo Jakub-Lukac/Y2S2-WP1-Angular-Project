@@ -6,7 +6,7 @@
     </div>
 
     <!-- Display album details and tracks -->
-    <div *ngIf="album && !loading" class="row">
+    <div *ngIf="album && !loading; else albumError" class="row">
         <div class="col-md-3 mt-4">
             <div class="album-details p-4 rounded">
                 <!-- Album cover -->
@@ -28,4 +28,9 @@
             <app-album-tracks [tracks]="tracks" [albumImageUrl]="albumImageUrl"></app-album-tracks>
         </div>
     </div>
+
+    
+    <ng-template #albumError>
+        <app-error-message *ngIf="!loading && errorMessage" [message]="errorMessage"></app-error-message>
+    </ng-template>
 </div>
