@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FavoriteMoviesComponent } from './favorite-movies.component';
+import { FavoriteTracksComponent } from './favorite-tracks.component';
 
-describe('FavoriteMoviesComponent', () => {
-  let component: FavoriteMoviesComponent;
-  let fixture: ComponentFixture<FavoriteMoviesComponent>;
+describe('FavoriteTracksComponent', () => {
+  let component: FavoriteTracksComponent;
+  let fixture: ComponentFixture<FavoriteTracksComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FavoriteMoviesComponent]
+      imports: [FavoriteTracksComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FavoriteMoviesComponent);
+    fixture = TestBed.createComponent(FavoriteTracksComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
