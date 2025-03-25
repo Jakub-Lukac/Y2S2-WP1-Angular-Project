@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { catchError, concatMap } from 'rxjs';
+import { catchError, concatMap, finalize } from 'rxjs';
 
 import { SpotifyApiService } from '../../services/spotify-api.service';
 import { Artist } from '../../models/artist-response';
@@ -21,10 +21,15 @@ export class SearchArtistComponent {
   artist?:Artist | undefined
   albums?:AlbumResponse | undefined
   errorMessage:any
+  loading:boolean = false;
 
   constructor (private _spotifyService:SpotifyApiService) {}
 
   getArtistDetails(artistName: string): boolean {
+    this.loading = true;
+    this.albums = undefined; // clear previous values
+    this.artist = undefined; // clear previous values
+
     this._spotifyService.getArtist(artistName).pipe(
       // Chain the album fetching using concatMap (to ensure sequential execution)
       concatMap(artistResponse => {
@@ -40,6 +45,9 @@ export class SearchArtistComponent {
         this.errorMessage = `${error}`;
         console.log(`Fetching error: ${this.errorMessage}`);
         return [];
+      }),
+      finalize(() => {
+        this.loading = false; // Ensure loading is stopped when request completes
       })
     ).subscribe(
       albumsResponse => {

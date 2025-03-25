@@ -14,19 +14,23 @@
         </div>
     </div>
 
+    <!-- Show loading spinner while fetching data -->
+    <!-- Show loading spinner while fetching data -->
+    <div *ngIf="loading" class="d-flex justify-content-center align-items-center mt-5">
+        <div class="spinner-border custom-spinner" role="status"></div>
+    </div>
+
     <!-- Display artist details and albums -->
-    <div *ngIf="artist; else artistError" class="row">
+    <div *ngIf="!loading && artist; else artistError" class="row">
         <div class="col-md-3 mt-4">
-            <!-- artist details-->
             <app-artist-details [artist]="artist"></app-artist-details>
         </div>
         <div class="col-md-9 mt-4">
-            <!-- artist's albums -->
             <app-artist-albums [albums]="albums"></app-artist-albums>
         </div>
     </div>
 
     <ng-template #artistError>
-        <app-error-message *ngIf="errorMessage" message="Artist not found. Please try again."></app-error-message>
+        <app-error-message *ngIf="!loading && errorMessage" [message]="errorMessage"></app-error-message>
     </ng-template>
 </div>
