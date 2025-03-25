@@ -7,7 +7,8 @@
 
                 <div class="card-body track-card-body p-3">
                     <!-- Track Name -->
-                    <h5 class="track-title fw-bold fs-5 mb-2 text-truncate" title="{{ track.name }}">{{ track.name }}</h5>
+                    <h5 class="track-title fw-bold fs-5 mb-2 text-truncate" title="{{ track.name }}">{{ track.name }}
+                    </h5>
 
                     <!-- Track Number -->
                     <p class="mb-2 fs-6"><strong>Track:</strong> #{{ track.track_number }}</p>
@@ -16,6 +17,12 @@
                     <p class="mb-2 fs-6">
                         <strong>Duration:</strong> {{ formatDuration(track.duration_ms) }}
                     </p>
+
+                    <button
+                        class="btn favorite-btn d-flex align-items-center justify-content-center rounded p-2 fw-bold w-100"
+                        (click)="addToFavorites(track)">
+                        <span class="fs-6">Add to Favorites</span>
+                    </button>
                 </div>
             </div>
         </div>

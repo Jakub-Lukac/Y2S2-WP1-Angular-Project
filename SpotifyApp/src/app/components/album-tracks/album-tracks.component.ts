@@ -18,4 +18,9 @@ export class AlbumTracksComponent {
     const seconds = Math.floor((ms % 60000) / 1000);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
+
+  addToFavorites(track: any) {
+    console.log(`Added to favorites: ${track.name}`);
+    // You can integrate this with a favorites service or local storage
+  }  
 }
