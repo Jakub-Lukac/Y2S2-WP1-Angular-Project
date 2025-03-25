@@ -42,8 +42,8 @@ export class SearchArtistComponent {
         }
       }),
       catchError(error => {
-        this.errorMessage = `${error}`;
-        console.log(`Fetching error: ${this.errorMessage}`);
+        this.errorMessage = `An error occured while fetching artist details! Please try again later.`;
+        console.log(`Fetching error: ${error}`);
         return [];
       }),
       finalize(() => {

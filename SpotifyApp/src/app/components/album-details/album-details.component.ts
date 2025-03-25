@@ -18,11 +18,13 @@ export class AlbumDetailComponent implements OnInit {
   album?: Album;
   tracks?: TrackResponse;
   albumImageUrl ?: string;
+  loading: boolean = false;
 
   constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
 
   ngOnInit() {
     this.album = history.state.album;
+    this.loading = true;
 
     if (!this.album) {
       // Handle case where album data is lost (e.g., direct page refresh)
@@ -37,7 +39,7 @@ export class AlbumDetailComponent implements OnInit {
       this._spotifyService.getAlbumTracks(this.album.id).subscribe(
         tracksData => {
           this.tracks = tracksData;
-
+          this.loading = false;
           console.log(`${JSON.stringify(tracksData)}`);
         }
       )

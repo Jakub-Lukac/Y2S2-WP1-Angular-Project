@@ -1,6 +1,12 @@
 <div class="container-fluid album-container">
+
+    <!-- Show loading spinner while fetching data -->
+    <div *ngIf="loading" class="d-flex justify-content-center align-items-center mt-5">
+        <div class="spinner-border custom-spinner" role="status"></div>
+    </div>
+
     <!-- Display album details and tracks -->
-    <div *ngIf="album" class="row">
+    <div *ngIf="album && !loading" class="row">
         <div class="col-md-3 mt-4">
             <div class="album-details p-4 rounded">
                 <!-- Album cover -->
