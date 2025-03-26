@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.development';
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
+import { Track } from '../models/track-response';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,10 @@ export class TracksApiService {
         );
     }
 
-    addToFavoriteTracks(): any{
-      
+    addToFavoriteTracks(track: Track){
+      return this._http.post(environment.SERVER_URL, track).pipe(
+        tap(() => console.log(`Track ${track.name} added to DB`)),
+        catchError(this.handleError)
+      )
     }
 }

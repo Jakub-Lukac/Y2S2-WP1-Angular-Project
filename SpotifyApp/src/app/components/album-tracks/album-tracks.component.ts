@@ -23,6 +23,9 @@ export class AlbumTracksComponent {
   }
 
   addToFavorites(track: Track) {
-    
+    this._trackAPIService.addToFavoriteTracks(track).subscribe(() => {
+      console.log(`${track.name} added to favorites`);
+      // Show toast notification here
+    });
   }  
 }
