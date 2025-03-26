@@ -13,9 +13,9 @@ router.get("/", async (req, res) => {
 // POST request to add a track to favorites
 router.post("/", async (req, res) => {
   const albumName = req.params.albumName;
-  const { trackId, trackName, duration, trackNumber } = req.body;
+  const { id, name, duration_ms, track_number } = req.body;
 
-  if (!trackId || !trackName) {
+  if (!id || !name) {
     return res
       .status(400)
       .json({ error: "Track ID and Track Name are required." });
@@ -23,18 +23,17 @@ router.post("/", async (req, res) => {
 
   const collection = await db.collection("favorite-tracks");
 
-  const existingTrack = await collection.findOne({ trackId });
+  const existingTrack = await collection.findOne({ id });
   if (existingTrack) {
     return res.status(409).json({ error: "Track is already in favorites." });
   }
 
   const favoriteTrack = {
-    trackId,
-    trackName,
+    id,
+    name,
     albumName,
-    trackNumber,
-    duration,
-    addedAt: new Date(),
+    duration_ms,
+    track_number,
   };
 
   let result = await collection.insertOne(favoriteTrack);

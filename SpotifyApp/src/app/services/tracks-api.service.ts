@@ -24,4 +24,8 @@ export class TracksApiService {
           catchError(this.handleError)
         );
     }
+
+    addToFavoriteTracks(): any{
+      
+    }
 }

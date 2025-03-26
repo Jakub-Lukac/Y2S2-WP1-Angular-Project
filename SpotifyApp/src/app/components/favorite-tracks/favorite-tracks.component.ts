@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { TracksApiService } from '../../services/tracks-api.service';
+import { TrackResponse } from '../../models/track-response';
 
 @Component({
   selector: 'app-favorite-tracks',
@@ -10,12 +11,12 @@ import { TracksApiService } from '../../services/tracks-api.service';
 })
 export class FavoriteTracksComponent implements OnInit{
 
-  response: any;
+  response: TrackResponse | undefined;
 
   constructor (private _tracksAPIService: TracksApiService) {}
 
-  ngOnInit(): void {
-      this._tracksAPIService.getFavoriteTracks().subscribe(
+  ngOnInit(): TrackResponse {
+      return this._tracksAPIService.getFavoriteTracks().subscribe(
         (        response: any) => {
           this.response = response;
           console.log(this.response)
