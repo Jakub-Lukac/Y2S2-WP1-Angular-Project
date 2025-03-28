@@ -1,5 +1,12 @@
 <div class="container-fluid p-5 track-list-container">
-    <div class="row g-4">
+
+
+    <!-- Show loading spinner while fetching data -->
+    <div *ngIf="loading" class="d-flex justify-content-center align-items-center mt-5">
+        <div class="spinner-border custom-spinner" role="status"></div>
+    </div>
+
+    <div *ngIf="!loading && tracks; else tracksError" class="row g-4">
         <!-- row-cols-sm-4, This sets the number of columns per row to 4 on small (≥576px) screen -->
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let track of tracks">
             <div class="card h-100 track-card shadow-sm rounded">
@@ -20,12 +27,17 @@
                     </p>
 
                     <button
-                        class="btn favorite-btn d-flex align-items-center justify-content-center rounded p-2 fw-bold w-100"
+                        class="btn delete-btn d-flex align-items-center justify-content-center rounded p-2 fw-bold w-100"
                         (click)="deleteFromFavorites(track)">
-                        <span class="fs-6">Add to Favorites</span>
+                        <span class="fs-6">Delete from Favorites</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <ng-template #tracksError>
+        <app-error-message *ngIf="!loading && errorMessage" [message]="errorMessage"></app-error-message>
+    </ng-template>
+
 </div>
