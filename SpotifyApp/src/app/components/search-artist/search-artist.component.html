@@ -1,12 +1,12 @@
-<div class="container-fluid search-container">
+<div class="container-fluid search-container p-4">
     <!-- Artist name input -->
     <div class="row justify-content-center mt-3">
         <div class="col-md-6">
             <form>
                 <div class="input-group">
-                    <input type="text" name="artist-name" class="form-control search-input" #artistName
+                    <input type="text" name="artist-name" class="form-control search-input p-2 fs-6" #artistName
                         placeholder="Enter artist name">
-                    <button (click)="getArtistDetails(artistName.value)" type="submit" class="btn search-btn">
+                    <button (click)="getArtistDetails(artistName.value)" type="submit" class="btn search-btn fw-bold">
                         <i class="bi bi-search pe-2"></i> Search
                     </button>
                 </div>

@@ -1,4 +1,4 @@
-<div class="container-fluid album-container">
+<div class="container-fluid album-container p-5">
 
     <!-- Show loading spinner while fetching data -->
     <div *ngIf="loading" class="d-flex justify-content-center align-items-center mt-5">
@@ -8,7 +8,7 @@
     <!-- Display album details and tracks -->
     <div *ngIf="album && !loading; else albumError" class="row">
         <div class="col-md-3 mt-4">
-            <div class="album-details p-4 rounded">
+            <div class="album-details d-flex flex-column align-items-center justify-content-center text-center p-4 rounded">
                 <!-- Album cover -->
                 <img *ngIf="album.images.length" [src]="album.images[0].url" alt="{{album.name}}"
                     class="img-fluid album-image d-none d-md-block mb-2">
@@ -16,11 +16,11 @@
                     class="img-fluid album-image d-md-none mb-2">
 
                 <!-- Album name -->
-                <div class="album-title fw-bold fs-md-4 fs-3 mb-2">{{ album.name }}</div>
+                <div class="album-title text-center fw-bold fs-md-4 fs-3 mb-2">{{ album.name }}</div>
 
                 <!-- Album metadata -->
-                <p class="album-meta mb-1 fs-md-6"><strong>Total Tracks:</strong> {{ album.total_tracks }}</p>
-                <p class="album-meta mb-1 fs-md-6"><strong>Release Date:</strong> {{ album.release_date }}</p>
+                <p class="text-center mb-1 fs-md-6"><strong>Total Tracks:</strong> {{ album.total_tracks }}</p>
+                <p class="text-center mb-1 fs-md-6"><strong>Release Date:</strong> {{ album.release_date }}</p>
             </div>
         </div>
         <div class="col-md-9 mt-4">

@@ -2,7 +2,6 @@
     background-color: #121212; 
     color: #ffffff;
     min-height: 100vh;
-    padding: 20px;
 }
 
 // Input field styling
@@ -10,8 +9,6 @@
     background-color: #282828; 
     color: #ffffff;
     border: 1px solid #1DB954; 
-    padding: 12px;
-    font-size: 16px;
 
     &::placeholder {
         color: #b3b3b3;
@@ -27,7 +24,6 @@
 .search-btn {
     background-color: #1DB954;
     color: #ffffff;
-    font-weight: bold;
     padding: 12px 20px;
     border: none;
     transition: all 0.3s ease;

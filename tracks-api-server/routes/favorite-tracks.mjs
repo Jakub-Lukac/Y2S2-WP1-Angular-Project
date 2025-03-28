@@ -12,8 +12,7 @@ router.get("/", async (req, res) => {
 
 // POST request to add a track to favorites
 router.post("/", async (req, res) => {
-  const albumName = req.params.albumName;
-  const { id, name, duration_ms, track_number } = req.body;
+  const { id, name, duration_ms, track_number, albumImageUrl } = req.body;
 
   if (!id || !name) {
     return res
@@ -31,9 +30,9 @@ router.post("/", async (req, res) => {
   const favoriteTrack = {
     id,
     name,
-    albumName,
     duration_ms,
     track_number,
+    albumImageUrl,
   };
 
   let result = await collection.insertOne(favoriteTrack);

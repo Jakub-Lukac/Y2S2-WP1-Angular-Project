@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { Track, TrackResponse } from '../../models/track-response';
+import { FavoriteTrack, Track, TrackResponse } from '../../models/track-response';
 import { TracksApiService } from '../../services/tracks-api.service';
 
 @Component({
@@ -23,9 +23,19 @@ export class AlbumTracksComponent {
   }
 
   addToFavorites(track: Track) {
-    this._trackAPIService.addToFavoriteTracks(track).subscribe(() => {
-      console.log(`${track.name} added to favorites`);
-      // Show toast notification here
+    if (!this.albumImageUrl) {
+      console.error("No album image URL available");
+      return;
+    }
+
+    const favoriteTrack: FavoriteTrack = {
+      ...track,
+      albumImageUrl: this.albumImageUrl
+    };
+
+    this._trackAPIService.addToFavoriteTracks(favoriteTrack).subscribe(() => {
+      console.log(`${favoriteTrack.name} added to favorites`);
+      // Show toast notification in parent component
     });
   }  
 }

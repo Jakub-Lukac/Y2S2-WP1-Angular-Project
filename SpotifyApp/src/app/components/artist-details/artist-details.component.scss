@@ -1,9 +1,7 @@
 .artist-details {
     background-color: #282828; 
     color: #ffffff;
-    padding: 20px;
     border-radius: 12px;
-    text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
     transition: transform 0.3s ease;
     display: flex;
@@ -14,12 +12,9 @@
 .artist-image {
     width: 100%;
     max-width: 250px;
-    border-radius: 50%;
     margin-bottom: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .artist-followers strong,

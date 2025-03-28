@@ -83,7 +83,7 @@ export class SpotifyApiService {
     );
   }
 
-  getAlbumTracks(albumId:string){
+  getAlbumTracks(albumId:string) : Observable<TrackResponse>{
     return this.getToken().pipe(
       switchMap(tokenResponse => {
         const headers = {

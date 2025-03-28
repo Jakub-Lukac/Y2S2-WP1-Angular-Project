@@ -1,0 +1,49 @@
+.track-list-container {
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+// Track Card Styling
+.track-card {
+    background-color: #282828; 
+    color: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.track-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.track-title {
+    color: #1DB954;
+}
+
+strong {
+    color: #1DB954;
+}
+
+
+.favorite-btn {
+    background-color: #1DB954; 
+    color: #ffffff;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: #1aa34a;
+    }
+
+    i {
+        font-size: 1.2rem; 
+        color: white;
+    }
+}

@@ -8,3 +8,7 @@ export interface Track {
     name:string,
     track_number:number
 }
+
+export interface FavoriteTrack extends Track {
+    albumImageUrl: string;
+}
