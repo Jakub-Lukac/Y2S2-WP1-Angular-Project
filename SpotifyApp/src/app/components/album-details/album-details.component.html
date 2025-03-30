@@ -8,7 +8,8 @@
     <!-- Display album details and tracks -->
     <div *ngIf="album && !loading; else albumError" class="row">
         <div class="col-md-3 mt-4">
-            <div class="album-details d-flex flex-column align-items-center justify-content-center text-center p-4 rounded">
+            <div
+                class="album-details d-flex flex-column align-items-center justify-content-center text-center p-4 rounded">
                 <!-- Album cover -->
                 <img *ngIf="album.images.length" [src]="album.images[0].url" alt="{{album.name}}"
                     class="img-fluid album-image d-none d-md-block mb-2">
@@ -25,11 +26,24 @@
         </div>
         <div class="col-md-9 mt-4">
             <!-- Album's tracks component -->
-            <app-album-tracks [tracks]="tracks" [albumImageUrl]="albumImageUrl"></app-album-tracks>
+            <app-album-tracks [tracks]="tracks" [albumImageUrl]="albumImageUrl"
+                (trackFavorited)="onTrackFavorited($event)"></app-album-tracks>
         </div>
     </div>
 
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div *ngFor="let toast of toasts" class="toast show custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Favorite Added</strong>
+                <button type="button" class="btn-close" (click)="removeToast(toast.id)"></button>
+            </div>
+            <div class="toast-body">
+                {{ toast.trackName }} has been added to favorites!
+            </div>
+        </div>
+    </div>
     
+
     <ng-template #albumError>
         <app-error-message *ngIf="!loading && errorMessage" [message]="errorMessage"></app-error-message>
     </ng-template>

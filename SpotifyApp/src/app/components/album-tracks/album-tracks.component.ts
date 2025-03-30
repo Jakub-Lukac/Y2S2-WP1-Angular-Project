@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FavoriteTrack, Track, TrackResponse } from '../../models/track-response';
@@ -13,6 +13,7 @@ import { TracksApiService } from '../../services/tracks-api.service';
 export class AlbumTracksComponent {
   @Input() tracks: TrackResponse | undefined;
   @Input() albumImageUrl: string | undefined; 
+  @Output() trackFavorited = new EventEmitter<FavoriteTrack>;
 
   constructor(private _trackAPIService:TracksApiService) {}
 
@@ -35,7 +36,7 @@ export class AlbumTracksComponent {
 
     this._trackAPIService.addToFavoriteTracks(favoriteTrack).subscribe(() => {
       console.log(`${favoriteTrack.name} added to favorites`);
-      // Show toast notification in parent component
+      this.trackFavorited.emit(favoriteTrack);
     });
   }  
 }

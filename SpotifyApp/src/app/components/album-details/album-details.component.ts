@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { Album } from '../../models/album-response';
 import { SpotifyApiService } from '../../services/spotify-api.service';
-import { TrackResponse } from '../../models/track-response';
+import { FavoriteTrack, TrackResponse } from '../../models/track-response';
 
 import { AlbumTracksComponent } from '../album-tracks/album-tracks.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
@@ -21,6 +21,10 @@ export class AlbumDetailComponent implements OnInit {
   albumImageUrl ?: string;
   loading: boolean = false;
   errorMessage: any;
+
+  toasts: { id: number; trackName: string }[] = []; 
+  toastCounter = 0;
+  favoriteTrack?: string;
 
   constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
 
@@ -51,5 +55,19 @@ export class AlbumDetailComponent implements OnInit {
       }
       
     }
+  }
+
+  onTrackFavorited(track: any) {
+    const toastId = ++this.toastCounter;
+    this.toasts.push({ id: toastId, trackName: track.name });
+
+    // Remove toast after 3 seconds
+    setTimeout(() => {
+      this.toasts = this.toasts.filter(toast => toast.id !== toastId);
+    }, 3000);
+  }
+
+  removeToast(toastId: number) {
+    this.toasts = this.toasts.filter(toast => toast.id !== toastId);
   }
 }
