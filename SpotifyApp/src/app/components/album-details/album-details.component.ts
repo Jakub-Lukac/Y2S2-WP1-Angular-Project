@@ -22,7 +22,7 @@ export class AlbumDetailComponent implements OnInit {
   loading: boolean = false;
   errorMessage: any;
 
-  toasts: { id: number; trackName: string }[] = []; 
+  toasts: { id: number; trackName: string, type: string }[] = []; 
   toastCounter = 0;
   favoriteTrack?: string;
 
@@ -59,13 +59,15 @@ export class AlbumDetailComponent implements OnInit {
 
   onTrackFavorited(track: any) {
     const toastId = ++this.toastCounter;
-    this.toasts.push({ id: toastId, trackName: track.name });
-
-    // Remove toast after 3 seconds
+    const toastType = track.error ? 'error' : 'success';
+  
+    this.toasts.push({ id: toastId, trackName: track.name, type: toastType });
+  
     setTimeout(() => {
       this.toasts = this.toasts.filter(toast => toast.id !== toastId);
     }, 3000);
   }
+  
 
   removeToast(toastId: number) {
     this.toasts = this.toasts.filter(toast => toast.id !== toastId);

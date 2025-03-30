@@ -13,7 +13,7 @@ import { TracksApiService } from '../../services/tracks-api.service';
 export class AlbumTracksComponent {
   @Input() tracks: TrackResponse | undefined;
   @Input() albumImageUrl: string | undefined; 
-  @Output() trackFavorited = new EventEmitter<FavoriteTrack>;
+  @Output() trackFavorited = new EventEmitter<any>;
 
   constructor(private _trackAPIService:TracksApiService) {}
 
@@ -34,9 +34,15 @@ export class AlbumTracksComponent {
       albumImageUrl: this.albumImageUrl
     };
 
-    this._trackAPIService.addToFavoriteTracks(favoriteTrack).subscribe(() => {
-      console.log(`${favoriteTrack.name} added to favorites`);
-      this.trackFavorited.emit(favoriteTrack);
+    this._trackAPIService.addToFavoriteTracks(favoriteTrack).subscribe({
+      next: () => {
+        console.log(`${favoriteTrack.name} added to favorites`);
+        this.trackFavorited.emit({ ...favoriteTrack, error: false }); 
+      },
+      error: (err) => {
+        console.error(`Error adding track: ${err.message}`);
+        this.trackFavorited.emit({ ...favoriteTrack, error: true });
+      }
     });
   }  
 }
