@@ -32,4 +32,11 @@ export class TracksApiService {
         catchError(this.handleError)
       )
     }
+
+    deleteTrackFromFavorites(track: FavoriteTrack){
+      return this._http.delete(`${environment.SERVER_URL}/favorite-tracks/${track.id}`).pipe(
+        tap(() => console.log(`Track ${track.name} deleted from DB`)),
+        catchError(this.handleError)
+      )
+    }
 }

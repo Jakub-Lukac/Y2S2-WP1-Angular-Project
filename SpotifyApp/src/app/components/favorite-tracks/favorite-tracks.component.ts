@@ -26,12 +26,16 @@ export class FavoriteTracksComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.getFavoriteTracks();
+  }  
+
+  getFavoriteTracks(): void {
     this.loading = true;
     this._tracksAPIService.getFavoriteTracks().subscribe({
       next: (response: any) => {
         this.tracks = response;
         this.loading = false;
-        console.log(`${JSON.stringify(this.tracks)}`);
+        console.log(`Updated tracks: ${JSON.stringify(this.tracks)}`);
       },
       error: (err) => {
         this.errorMessage = "An error occurred while fetching favorite tracks! Please try again later.";

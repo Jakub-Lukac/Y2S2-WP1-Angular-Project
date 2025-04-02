@@ -39,4 +39,25 @@ router.post("/", async (req, res) => {
   res.status(201).json({ message: "Track added to favorites!", data: result });
 });
 
+router.delete("/:id", async (req, res) => {
+  let id = req.params.id;
+  console.log("DELETE: " + id);
+
+  const query = { id: id };
+
+  try {
+    const collection = db.collection("favorite-tracks");
+    let result = await collection.deleteOne(query);
+
+    if (result.deletedCount === 1) {
+      res.status(200).send({ message: "Track deleted successfully", id });
+    } else {
+      res.status(404).send({ message: "Track not found", id });
+    }
+  } catch (error) {
+    console.error("Error deleting track:", error);
+    res.status(500).send({ message: "Internal server error", error });
+  }
+});
+
 export default router;
