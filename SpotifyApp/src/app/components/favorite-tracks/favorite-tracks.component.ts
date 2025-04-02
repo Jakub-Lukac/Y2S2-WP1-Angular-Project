@@ -27,21 +27,21 @@ export class FavoriteTracksComponent implements OnInit{
 
   ngOnInit(): void {
     this.loading = true;
-    try {
-      this._tracksAPIService.getFavoriteTracks().subscribe(
-        (        response: any) => {
-          this.tracks = response;
-          this.loading = false;
-          console.log(`${JSON.stringify(this.tracks)}`)
-        }
-      )
-    } catch (error) {
-       this.errorMessage = "An error occured while fetching favorite tracks! Please try again later."
-    }
-      
-  }
+    this._tracksAPIService.getFavoriteTracks().subscribe({
+      next: (response: any) => {
+        this.tracks = response;
+        this.loading = false;
+        console.log(`${JSON.stringify(this.tracks)}`);
+      },
+      error: (err) => {
+        this.errorMessage = "An error occurred while fetching favorite tracks! Please try again later.";
+        this.loading = false;
+        console.error("Error fetching favorite tracks:", err);
+      }
+    });
+  }  
 
   deleteFromFavorites(favoriteTrack: FavoriteTrack) : any{
-
+    
   }
 }
