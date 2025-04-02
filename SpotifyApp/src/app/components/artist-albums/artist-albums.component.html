@@ -4,7 +4,12 @@
             <div class="row g-0">
                 <!-- Left side: Album Cover -->
                 <div class="col-6">
-                    <img [src]="album.images[0].url" class="img-fluid rounded" [alt]="album.name" />
+                    <img *ngIf="album.images[0].url.length > 3; esle missingImage" src="album.images[0].url"
+                        class="img-fluid rounded" alt="album.name" />
+
+                    <ng-template #missingImage>
+                        <img src="NoImage.png" class="img-fluid rounded" alt="album.name" />
+                    </ng-template>
                 </div>
 
                 <!-- Right side: Album Details -->

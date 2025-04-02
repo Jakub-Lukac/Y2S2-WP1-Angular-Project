@@ -1,11 +1,21 @@
 <div class="artist-details p-4 text-center">
     <!-- Display image for medium and larger screens -->
-    <img *ngIf="artist.images.length" src="{{artist.images[0].url}}" alt="{{artist.name}}"
+    <img *ngIf="artist.images.length > 3; else missingImageMdLg" src="{{artist.images[0].url}}" alt="{{artist.name}}"
         class="img-fluid artist-image d-none d-md-block rounded-circle mx-auto">
 
+    <ng-template #missingImageMdLg>
+        <img src="NoImage.png" alt="Artist image missing"
+            class="img-fluid artist-image d-none d-md-block rounded-circle mx-auto">
+    </ng-template>
+
     <!-- Display image for smaller screens -->
-    <img *ngIf="artist.images.length > 1" src="{{artist.images[1].url}}" alt="{{artist.name}}"
+    <img *ngIf="artist.images.length > 3; else missingImageSm" src="{{artist.images[1].url}}" alt="{{artist.name}}"
         class="img-fluid artist-image d-md-none">
+
+    <ng-template #missingImageSm>
+        <img src="NoImage.png" alt="Artist image missing"
+            class="img-fluid artist-image d-none d-md-block rounded-circle mx-auto">
+    </ng-template>
 
     <div class="fs-3 fw-bold mb-3">{{artist.name}}</div>
     <p class="artist-followers fs-6 mb-2"><strong>Followers:</strong> {{artist.followers.total | number}}</p>
