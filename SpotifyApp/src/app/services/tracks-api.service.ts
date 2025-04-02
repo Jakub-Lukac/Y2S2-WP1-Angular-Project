@@ -34,7 +34,7 @@ export class TracksApiService {
     }
 
     deleteTrackFromFavorites(track: FavoriteTrack){
-      return this._http.delete(`${environment.SERVER_URL}/favorite-tracks/${track.id}`).pipe(
+      return this._http.delete(`${environment.SERVER_URL}/${track.id}`).pipe(
         tap(() => console.log(`Track ${track.name} deleted from DB`)),
         catchError(this.handleError)
       )
