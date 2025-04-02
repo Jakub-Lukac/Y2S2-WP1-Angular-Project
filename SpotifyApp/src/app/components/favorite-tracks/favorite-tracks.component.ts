@@ -46,6 +46,16 @@ export class FavoriteTracksComponent implements OnInit{
   }  
 
   deleteFromFavorites(favoriteTrack: FavoriteTrack) : any{
-    
+    this._tracksAPIService.deleteTrackFromFavorites(favoriteTrack).subscribe({
+      next: () => {
+        console.log(`Deleted track: ${favoriteTrack.name}`);
+        this.getFavoriteTracks(); // Refresh UI after deletion
+      },
+      error: (err) => {
+        this.errorMessage = "An error occurred while deleting the track! Please try again later.";
+        this.loading = false;
+        console.error("Error deleting track:", err);
+      }
+    });
   }
 }

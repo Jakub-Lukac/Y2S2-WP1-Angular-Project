@@ -1,6 +1,6 @@
 <div class="artist-details p-4 text-center">
     <!-- Display image for medium and larger screens -->
-    <img *ngIf="artist.images.length > 3; else missingImageMdLg" src="{{artist.images[0].url}}" alt="{{artist.name}}"
+    <img *ngIf="artist.images; else missingImageMdLg" src="{{artist.images[0].url}}" alt="{{artist.name}}"
         class="img-fluid artist-image d-none d-md-block rounded-circle mx-auto">
 
     <ng-template #missingImageMdLg>
@@ -9,7 +9,7 @@
     </ng-template>
 
     <!-- Display image for smaller screens -->
-    <img *ngIf="artist.images.length > 3; else missingImageSm" src="{{artist.images[1].url}}" alt="{{artist.name}}"
+    <img *ngIf="artist.images; else missingImageSm" src="{{artist.images[1].url}}" alt="{{artist.name}}"
         class="img-fluid artist-image d-md-none">
 
     <ng-template #missingImageSm>

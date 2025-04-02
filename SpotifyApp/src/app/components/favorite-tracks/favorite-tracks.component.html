@@ -11,12 +11,13 @@
         <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let track of tracks">
             <div class="card h-100 track-card shadow-sm rounded">
                 <!-- Album Cover -->
-                <img *ngIf="track.albumImageUrl.length > 3; else missingImage" src="track.albumImageUrl"
+                <img *ngIf="track.albumImageUrl.length > 3; else missingImage" src="{{track.albumImageUrl}}"
                     class="card-img-top" alt="Album Cover">
 
                 <ng-template #missingImage>
-                    <img src="NoImage.png" class="img-fluid rounded" alt="Album image missing" />
+                    <img src="NoImage" alt="Favorite track image missing">
                 </ng-template>
+
 
                 <div class="card-body p-3 text-center">
                     <!-- Track Name -->
