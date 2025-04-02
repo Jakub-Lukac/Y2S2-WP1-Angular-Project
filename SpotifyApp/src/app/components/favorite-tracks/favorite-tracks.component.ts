@@ -17,6 +17,9 @@ export class FavoriteTracksComponent implements OnInit{
   loading: boolean = false;
   errorMessage: any;
 
+  toasts: { id: number; trackName: string, type: string }[] = []; 
+  toastCounter = 0;
+
   constructor (private _tracksAPIService: TracksApiService) {}
 
   formatDuration(ms: number): string {
@@ -49,7 +52,11 @@ export class FavoriteTracksComponent implements OnInit{
     this._tracksAPIService.deleteTrackFromFavorites(favoriteTrack).subscribe({
       next: () => {
         console.log(`Deleted track: ${favoriteTrack.name}`);
-        this.getFavoriteTracks(); // Refresh UI after deletion
+
+        // show toast
+        this.onTrackDeleted(favoriteTrack);
+        // Refresh UI after deletion
+        this.getFavoriteTracks(); 
       },
       error: (err) => {
         this.errorMessage = "An error occurred while deleting the track! Please try again later.";
@@ -57,5 +64,21 @@ export class FavoriteTracksComponent implements OnInit{
         console.error("Error deleting track:", err);
       }
     });
+  }
+
+  onTrackDeleted(track: any) {
+    const toastId = ++this.toastCounter;
+    const toastType = track.error ? 'error' : 'success';
+  
+    this.toasts.push({ id: toastId, trackName: track.name, type: toastType });
+  
+    setTimeout(() => {
+      this.toasts = this.toasts.filter(toast => toast.id !== toastId);
+    }, 3000);
+  }
+  
+
+  removeToast(toastId: number) {
+    this.toasts = this.toasts.filter(toast => toast.id !== toastId);
   }
 }

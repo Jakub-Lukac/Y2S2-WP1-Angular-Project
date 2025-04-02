@@ -54,3 +54,33 @@ strong {
     border-width: 5px;
     color: #1DB954 !important;
 }
+
+.custom-toast {
+    background-color: #D4EDDA; 
+    color: #2E4045; 
+    border-left: 5px solid #1DB954;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.custom-toast .toast-header {
+    background-color: #C3E6CB; 
+    color: #2E4045;
+    border-bottom: 1px solid #A5D6A7;
+}
+
+.custom-toast .btn-close {
+    color: #2E4045;
+}
+
+.error-toast {
+    background-color: #2E4045;
+    color: #FFFFFF; 
+    border-left: 5px solid #1DB954;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.error-toast .toast-header {
+    background-color: #2E4045;
+    color: #FFFFFF;
+    border-bottom: 1px solid #1DB954;
+}
