@@ -12,6 +12,4 @@ export class ArtistDetailsComponent {
   @Input() artist!:Artist
 
   constructor() {}
-
-  
 }

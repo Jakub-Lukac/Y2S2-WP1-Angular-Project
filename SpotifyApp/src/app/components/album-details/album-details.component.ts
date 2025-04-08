@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { Album } from '../../models/album-response';
 import { SpotifyApiService } from '../../services/spotify-api.service';
-import { FavoriteTrack, TrackResponse } from '../../models/track-response';
+import { TrackResponse } from '../../models/track-response';
 
 import { AlbumTracksComponent } from '../album-tracks/album-tracks.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
@@ -23,7 +23,7 @@ export class AlbumDetailComponent implements OnInit {
   errorMessage: any;
 
   toasts: { id: number; trackName: string, type: string }[] = []; 
-  toastCounter = 0;
+  private _toastCounter = 0;
   favoriteTrack?: string;
 
   constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
@@ -58,7 +58,7 @@ export class AlbumDetailComponent implements OnInit {
   }
 
   onTrackFavorited(track: any) {
-    const toastId = ++this.toastCounter;
+    const toastId = ++this._toastCounter;
     const toastType = track.error ? 'error' : 'success';
   
     this.toasts.push({ id: toastId, trackName: track.name, type: toastType });

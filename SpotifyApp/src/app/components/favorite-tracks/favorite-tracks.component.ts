@@ -18,7 +18,7 @@ export class FavoriteTracksComponent implements OnInit{
   errorMessage: any;
 
   toasts: { id: number; trackName: string, type: string }[] = []; 
-  toastCounter = 0;
+  private _toastCounter = 0;
 
   constructor (private _tracksAPIService: TracksApiService) {}
 
@@ -67,7 +67,7 @@ export class FavoriteTracksComponent implements OnInit{
   }
 
   onTrackDeleted(track: any) {
-    const toastId = ++this.toastCounter;
+    const toastId = ++this._toastCounter;
     const toastType = track.error ? 'error' : 'success';
   
     this.toasts.push({ id: toastId, trackName: track.name, type: toastType });
