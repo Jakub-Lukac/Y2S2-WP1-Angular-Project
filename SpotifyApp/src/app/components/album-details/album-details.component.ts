@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 import { Album } from '../../models/album-response';
@@ -26,7 +26,7 @@ export class AlbumDetailComponent implements OnInit {
   private _toastCounter = 0;
   favoriteTrack?: string;
 
-  constructor(private _route: ActivatedRoute, private _router:Router, private _spotifyService:SpotifyApiService ) {}
+  constructor(private _route: ActivatedRoute, private _spotifyService:SpotifyApiService ) {}
 
   ngOnInit() {
     this.album = history.state.album;
