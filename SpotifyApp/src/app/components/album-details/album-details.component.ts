@@ -33,10 +33,8 @@ export class AlbumDetailComponent implements OnInit {
     this.loading = true;
 
     if (!this.album) {
-      // Handle case where album data is lost (e.g., direct page refresh)
       const albumName = this._route.snapshot.paramMap.get('name');
       console.log('Fetch album details by name:', albumName);
-      // TODO: Call API to fetch album details if needed
     } else {
       console.log('Album details:', this.album);
       this.albumImageUrl = this.album.images[1].url;
